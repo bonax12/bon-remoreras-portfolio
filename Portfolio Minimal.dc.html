@@ -156,7 +156,8 @@ input::placeholder,textarea::placeholder{color:var(--label)}
       <h2 style="margin:0 0 22px;font-size:54px;line-height:1.06;font-weight:700;letter-spacing:-0.04em;max-width:18ch">Let's design something quiet and useful.</h2>
       <p style="margin:0 0 40px;font-size:15px;line-height:1.9;color:var(--field-body);max-width:44ch">Tell me what you're building and where it's stuck. Scope, timeline and a flat price come back within two working days.</p>
       <form onSubmit="{{ onSubmit }}" style="display:flex;gap:0;flex-wrap:wrap;max-width:520px;border-bottom:1px solid var(--field-rule);padding-bottom:10px;margin-bottom:36px">
-        <input type="email" placeholder="your email" style="flex:1;min-width:200px;font-family:Poppins,system-ui,sans-serif;font-size:15px;font-weight:300;background:transparent;border:0;color:var(--on-field);padding:6px 0">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+        <input type="email" name="email" placeholder="your email" required="required" style="flex:1;min-width:200px;font-family:Poppins,system-ui,sans-serif;font-size:15px;font-weight:300;background:transparent;border:0;color:var(--on-field);padding:6px 0">
         <button type="submit" style="cursor:pointer;border:0;background:none;font-family:Poppins,system-ui,sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--on-field);padding:6px 0" style-hover="color:var(--field-accent)">{{ submitLabel }}</button>
       </form>
       <div class="pm-2" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;font-size:14px;line-height:1.9">
@@ -189,7 +190,29 @@ input::placeholder,textarea::placeholder{color:var(--label)}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { filter: "All", slide: 0, sent: false, dark: false };
+  state = { filter: "All", slide: 0, sent: false, sending: false, error: false, dark: false };
+
+  sendToWeb3Forms(e) {
+    e.preventDefault();
+    const form = e.target;
+    const payload = Object.fromEntries(new FormData(form).entries());
+    if (payload.botcheck) return;
+    payload.access_key = "89f00fe7-f86d-4bcd-aa74-31a2e7f5bcc8";
+    payload.subject = "New enquiry from your portfolio site";
+    payload.from_name = "Portfolio contact form";
+    this.setState({ sending: true, error: false });
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then((r) => r.json())
+      .then((res) => {
+        if (res.success) { this.setState({ sent: true, sending: false }); form.reset(); }
+        else { this.setState({ sending: false, error: true }); }
+      })
+      .catch(() => this.setState({ sending: false, error: true }));
+  }
 
   componentDidMount() {
     let dark = false;
@@ -259,8 +282,8 @@ class Component extends DCLogic {
       ],
       themeLabel: this.state.dark ? "Light" : "Dark",
       toggleTheme: () => this.setTheme(!this.state.dark),
-      submitLabel: this.state.sent ? "Sent" : "Send",
-      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); }
+      submitLabel: this.state.sent ? "Sent" : this.state.sending ? "Sending…" : this.state.error ? "Try again" : "Send",
+      onSubmit: (e) => this.sendToWeb3Forms(e)
     };
   }
 }

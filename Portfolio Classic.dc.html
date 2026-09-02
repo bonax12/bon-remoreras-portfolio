@@ -134,7 +134,8 @@ input::placeholder{color:#9ca3af}
   <h2 style="margin:0 0 14px;font-size:38px;font-weight:800;letter-spacing:-0.02em;text-align:center">Lets Design Together</h2>
   <p style="margin:0 auto 36px;font-size:14px;line-height:1.8;color:#4b5563;text-align:center;max-width:56ch">Drop your email and a line about the project. You get scope, timeline and a flat price within two working days.</p>
   <form onSubmit="{{ onSubmit }}" style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
-    <input type="email" placeholder="Enter Your Email" style="font-family:Poppins,system-ui,sans-serif;font-size:14px;width:340px;max-width:100%;padding:13px 16px;border:1px solid #e5e7eb;border-radius:6px;background:#fff;color:#1a1a1a">
+    <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+    <input type="email" name="email" placeholder="Enter Your Email" required="required" style="font-family:Poppins,system-ui,sans-serif;font-size:14px;width:340px;max-width:100%;padding:13px 16px;border:1px solid #e5e7eb;border-radius:6px;background:#fff;color:#1a1a1a">
     <button type="submit" style="cursor:pointer;border:0;font-family:Poppins,system-ui,sans-serif;background:#f97316;color:#fff;font-size:14px;font-weight:500;padding:13px 32px;border-radius:6px">{{ submitLabel }}</button>
   </form>
 </section>
@@ -167,7 +168,29 @@ input::placeholder{color:#9ca3af}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { filter: "All", slide: 1, sent: false };
+  state = { filter: "All", slide: 1, sent: false, sending: false, error: false };
+
+  sendToWeb3Forms(e) {
+    e.preventDefault();
+    const form = e.target;
+    const payload = Object.fromEntries(new FormData(form).entries());
+    if (payload.botcheck) return;
+    payload.access_key = "89f00fe7-f86d-4bcd-aa74-31a2e7f5bcc8";
+    payload.subject = "New enquiry from your portfolio site";
+    payload.from_name = "Portfolio contact form";
+    this.setState({ sending: true, error: false });
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then((r) => r.json())
+      .then((res) => {
+        if (res.success) { this.setState({ sent: true, sending: false }); form.reset(); }
+        else { this.setState({ sending: false, error: true }); }
+      })
+      .catch(() => this.setState({ sending: false, error: true }));
+  }
 
   projects() {
     return [
@@ -208,8 +231,8 @@ class Component extends DCLogic {
         fg: this.state.filter === c ? "#fff" : "#1a1a1a"
       })),
       skills: skills.map(s => ({ name: s.name, pct: s.pct + "%", knob: `calc(${s.pct}% - 9px)` })),
-      submitLabel: this.state.sent ? "Sent — talk soon" : "Contact Me",
-      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      submitLabel: this.state.sent ? "Sent — talk soon" : this.state.sending ? "Sending…" : this.state.error ? "Try again" : "Contact Me",
+      onSubmit: (e) => this.sendToWeb3Forms(e),
       services: [
         { num: "01", title: "UI/UX", body: "Research, flows, wireframes and high-fidelity screens ready for build." },
         { num: "02", title: "Web Design", body: "Marketing sites and landing pages with a section system your team can extend." },

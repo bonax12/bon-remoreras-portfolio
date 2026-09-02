@@ -226,17 +226,18 @@ a:hover{color:var(--color-accent-700)}
     </div>
     <div style="padding:64px 0 72px 48px;border-left:2px solid var(--color-bg)">
       <form onSubmit="{{ onSubmit }}" style="display:grid;gap:18px">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
         <div class="field">
           <label style="color:var(--color-bg);opacity:0.85;font:11px ui-monospace,Menlo,monospace;letter-spacing:0.08em;text-transform:uppercase">Your name</label>
-          <input class="input" type="text" placeholder="Juan Dela Cruz" style="background:transparent;border:2px solid var(--color-bg);color:var(--color-bg);min-height:44px">
+          <input class="input" name="name" type="text" placeholder="Juan Dela Cruz" required="required" style="background:transparent;border:2px solid var(--color-bg);color:var(--color-bg);min-height:44px">
         </div>
         <div class="field">
           <label style="color:var(--color-bg);opacity:0.85;font:11px ui-monospace,Menlo,monospace;letter-spacing:0.08em;text-transform:uppercase">Email</label>
-          <input class="input" type="email" placeholder="you@company.com" style="background:transparent;border:2px solid var(--color-bg);color:var(--color-bg);min-height:44px">
+          <input class="input" name="email" type="email" placeholder="you@company.com" required="required" style="background:transparent;border:2px solid var(--color-bg);color:var(--color-bg);min-height:44px">
         </div>
         <div class="field">
           <label style="color:var(--color-bg);opacity:0.85;font:11px ui-monospace,Menlo,monospace;letter-spacing:0.08em;text-transform:uppercase">Project</label>
-          <textarea class="input" placeholder="A Shopify storefront for a coffee brand — launch in 6 weeks." style="background:transparent;border:2px solid var(--color-bg);color:var(--color-bg);min-height:96px"></textarea>
+          <textarea class="input" name="message" placeholder="A Shopify storefront for a coffee brand — launch in 6 weeks." required="required" style="background:transparent;border:2px solid var(--color-bg);color:var(--color-bg);min-height:96px"></textarea>
         </div>
         <button class="btn" type="submit" style="background:var(--color-bg);color:var(--color-accent);justify-content:flex-start;padding:14px 20px;text-transform:uppercase;letter-spacing:0.04em">{{ submitLabel }}</button>
         <p style="font:11px ui-monospace,Menlo,monospace;letter-spacing:0.06em;text-transform:uppercase;margin:0;color:var(--color-bg);opacity:0.8">or email babsremoreras@gmail.com</p>
@@ -292,7 +293,29 @@ a:hover{color:var(--color-accent-700)}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ec3013&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ec3013&quot;,&quot;#201e1d&quot;,&quot;#1d4ed8&quot;,&quot;#3f6212&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;heroVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;grid&quot;,&quot;options&quot;:[&quot;grid&quot;,&quot;poster&quot;,&quot;marquee&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Theme&quot;}}">
 class Component extends DCLogic {
-  state = { filter: "All", sent: false };
+  state = { filter: "All", sent: false, sending: false, error: false };
+
+  sendToWeb3Forms(e) {
+    e.preventDefault();
+    const form = e.target;
+    const payload = Object.fromEntries(new FormData(form).entries());
+    if (payload.botcheck) return;
+    payload.access_key = "89f00fe7-f86d-4bcd-aa74-31a2e7f5bcc8";
+    payload.subject = "New enquiry from your portfolio site";
+    payload.from_name = "Portfolio contact form";
+    this.setState({ sending: true, error: false });
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then((r) => r.json())
+      .then((res) => {
+        if (res.success) { this.setState({ sent: true, sending: false }); form.reset(); }
+        else { this.setState({ sending: false, error: true }); }
+      })
+      .catch(() => this.setState({ sending: false, error: true }));
+  }
 
   componentDidMount() { this.applyAccent(); }
   componentDidUpdate() { this.applyAccent(); }
@@ -328,8 +351,8 @@ class Component extends DCLogic {
       isMarquee: v === "marquee",
       shownProjects: shown,
       countLabel: `${shown.length} of ${all.length} projects`,
-      submitLabel: this.state.sent ? "Sent — talk soon" : "Send project brief",
-      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      submitLabel: this.state.sent ? "Sent — talk soon" : this.state.sending ? "Sending…" : this.state.error ? "Try again" : "Send project brief",
+      onSubmit: (e) => this.sendToWeb3Forms(e),
       filters: cats.map(c => ({
         name: c,
         active: this.state.filter === c,

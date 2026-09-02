@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+body{margin:0;background:#fff;color:#1a1a1a;font-family:Poppins,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+a{color:#f97316;text-decoration:none}
+a:hover{color:#dc6208}
+input::placeholder{color:#9ca3af}
+@media (max-width:900px){.pc-2{grid-template-columns:1fr!important}.pc-4{grid-template-columns:1fr 1fr!important}.pc-3{grid-template-columns:1fr!important}.pc-hero-h1{font-size:14vw!important}.pc-navlinks{display:none!important}}
+</style>
+</helmet>
+
+<div style="max-width:100%;overflow-x:hidden">
+
+<header style="position:sticky;top:0;z-index:50;background:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;gap:28px">
+    <a href="#home" style="display:flex;align-items:center;gap:8px;color:#1a1a1a">
+      <span style="font-weight:800;font-size:22px;letter-spacing:-0.02em">STUDIO</span>
+      <span style="width:34px;height:34px;border-radius:50%;background:#fde8d7;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#f97316">BR</span>
+    </a>
+    <div style="flex:1"></div>
+    <nav class="pc-navlinks" style="display:flex;align-items:center;gap:30px;font-size:14px;font-weight:500">
+      <a href="#home" style="color:#1a1a1a" style-hover="color:#f97316">Home</a>
+      <a href="#about" style="color:#1a1a1a" style-hover="color:#f97316">About Me</a>
+      <a href="#services" style="color:#1a1a1a" style-hover="color:#f97316">Services</a>
+      <a href="#projects" style="color:#1a1a1a" style-hover="color:#f97316">Projects</a>
+      <a href="#contact" style="color:#1a1a1a" style-hover="color:#f97316">Contact</a>
+    </nav>
+    <a href="#" style="background:#f97316;color:#fff;font-size:13px;font-weight:500;padding:11px 20px;border-radius:6px" style-hover="background:#dc6208;color:#fff">Download CV</a>
+  </div>
+</header>
+
+<section id="home" style="max-width:1200px;margin:0 auto;padding:36px 32px 90px">
+  <div class="pc-2" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+    <div>
+      <p style="margin:0 0 6px;font-size:15px;font-weight:600">Hi I am</p>
+      <p style="margin:0 0 10px;font-size:22px;font-weight:600;color:#f97316">Bon Axel Bryan Remoreas</p>
+      <h1 class="pc-hero-h1" style="margin:0 0 26px;font-size:64px;line-height:1.06;font-weight:800;letter-spacing:-0.02em">UI &amp; UX<br><span style="display:block;text-align:right">Designer</span></h1>
+      <p style="margin:0 0 28px;font-size:14px;line-height:1.85;color:#4b5563;text-align:justify;max-width:52ch">I design digital products end to end — research, flows, wireframes and high-fidelity interfaces. Six years working with founders and small teams, then building the front end so the design ships the way it was drawn.</p>
+      <a href="#contact" style="display:inline-block;background:#f97316;color:#fff;font-size:14px;font-weight:500;padding:12px 34px;border-radius:6px" style-hover="background:#dc6208;color:#fff">Hire Me</a>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:22px">
+      <div style="position:relative;width:100%;max-width:380px;aspect-ratio:1/1">
+        <div style="position:absolute;inset:0;border-radius:50%;border:2px solid #d1d5db"></div>
+        <div style="position:absolute;inset:14px;border-radius:50%;overflow:hidden;background:repeating-linear-gradient(45deg,#fde8d7 0 10px,#fdf3ea 10px 20px);display:flex;align-items:flex-end;justify-content:center;padding:22px">
+          <span style="font:11px ui-monospace,Menlo,monospace;letter-spacing:0.06em;text-transform:uppercase;color:#b45309;text-align:center">portrait — cutout PNG<br>1200×1200</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:16px">
+        <a href="#" style="width:30px;height:30px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700" style-hover="background:#f97316;color:#fff">f</a>
+        <a href="#" style="width:30px;height:30px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700" style-hover="background:#f97316;color:#fff">t</a>
+        <a href="#" style="width:30px;height:30px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700" style-hover="background:#f97316;color:#fff">ig</a>
+        <a href="#" style="width:30px;height:30px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700" style-hover="background:#f97316;color:#fff">in</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="max-width:1200px;margin:0 auto;padding:0 32px 100px">
+  <div class="pc-2" style="display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:center">
+    <div style="position:relative;width:100%;max-width:340px;aspect-ratio:1/1;margin:0 auto">
+      <div style="position:absolute;inset:0;border-radius:50%;border:2px solid #d1d5db"></div>
+      <div style="position:absolute;inset:14px;border-radius:50%;overflow:hidden;background:repeating-linear-gradient(45deg,#fde8d7 0 10px,#fdf3ea 10px 20px);display:flex;align-items:flex-end;justify-content:center;padding:20px">
+        <span style="font:11px ui-monospace,Menlo,monospace;letter-spacing:0.06em;text-transform:uppercase;color:#b45309;text-align:center">second portrait<br>1200×1200</span>
+      </div>
+    </div>
+    <div>
+      <h2 style="margin:0 0 16px;font-size:38px;font-weight:800;letter-spacing:-0.02em">About Me</h2>
+      <p style="margin:0 0 26px;font-size:14px;line-height:1.85;color:#4b5563;max-width:58ch">My portfolio lives in Figma — every file documented so clients can follow the reasoning, not just the pixels. Most of my work sits with early-stage products and e-commerce: dashboards that hide their complexity, and storefronts that hold up after handoff.</p>
+      <div style="display:grid;gap:18px">
+        <sc-for list="{{ skills }}" as="s" hint-placeholder-count="4">
+          <div>
+            <p style="margin:0 0 8px;font-size:14px;font-weight:600">{{ s.name }}</p>
+            <div style="position:relative;height:8px;border-radius:99px;background:#e5e7eb">
+              <div style="position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:#f97316;width:{{ s.pct }}"></div>
+              <div style="position:absolute;top:-5px;width:18px;height:18px;border-radius:50%;background:#f97316;border:3px solid #fff;box-shadow:0 0 0 1px #f97316;left:{{ s.knob }}"></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" style="max-width:1200px;margin:0 auto;padding:0 32px 100px">
+  <h2 style="margin:0 0 14px;font-size:38px;font-weight:800;letter-spacing:-0.02em;text-align:center">Services</h2>
+  <p style="margin:0 auto 44px;font-size:14px;line-height:1.8;color:#4b5563;text-align:center;max-width:56ch">Four ways I plug into a team — pick one, or run the whole thing from research to a shipped build.</p>
+  <div class="pc-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px">
+    <sc-for list="{{ services }}" as="sv" hint-placeholder-count="4">
+      <div style="background:#f7f7f7;border-radius:10px;padding:26px 22px 30px" style-hover="background:#fdf3ea">
+        <div style="width:44px;height:44px;border-radius:8px;border:2px solid #f97316;display:flex;align-items:center;justify-content:center;margin-bottom:34px">
+          <span style="font-size:15px;font-weight:700;color:#f97316">{{ sv.num }}</span>
+        </div>
+        <h3 style="margin:0 0 10px;font-size:19px;font-weight:700;letter-spacing:-0.01em">{{ sv.title }}</h3>
+        <p style="margin:0;font-size:13px;line-height:1.8;color:#4b5563">{{ sv.body }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="projects" style="max-width:1200px;margin:0 auto;padding:0 32px 100px">
+  <h2 style="margin:0 0 14px;font-size:38px;font-weight:800;letter-spacing:-0.02em;text-align:center">My Projects</h2>
+  <p style="margin:0 auto 34px;font-size:14px;line-height:1.8;color:#4b5563;text-align:center;max-width:56ch">A selection of product, web and e-commerce work. Filter by discipline — full case studies live in my Figma.</p>
+  <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-bottom:40px">
+    <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+      <button onClick="{{ f.select }}" style="cursor:pointer;font-family:Poppins,system-ui,sans-serif;font-size:13px;font-weight:500;padding:9px 20px;border-radius:6px;border:1px solid #e5e7eb;background:{{ f.bg }};color:{{ f.fg }}">{{ f.name }}</button>
+    </sc-for>
+  </div>
+  <div class="pc-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px">
+    <sc-for list="{{ shownProjects }}" as="p" hint-placeholder-count="3">
+      <a href="#" style="display:block;color:#1a1a1a">
+        <div style="background:#fde8d7;border-radius:8px;padding:16px;aspect-ratio:4/5;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;margin-bottom:14px">
+          <span style="font:11px/1.5 ui-monospace,Menlo,monospace;letter-spacing:0.06em;text-transform:uppercase;color:#b45309;text-align:center">{{ p.slot }}</span>
+        </div>
+        <p style="margin:0 0 4px;font-size:12px;font-weight:500;color:#f97316">{{ p.cat }}</p>
+        <h3 style="margin:0;font-size:16px;font-weight:700;letter-spacing:-0.01em">{{ p.title }}</h3>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<section id="contact" style="max-width:1200px;margin:0 auto;padding:0 32px 90px">
+  <h2 style="margin:0 0 14px;font-size:38px;font-weight:800;letter-spacing:-0.02em;text-align:center">Lets Design Together</h2>
+  <p style="margin:0 auto 36px;font-size:14px;line-height:1.8;color:#4b5563;text-align:center;max-width:56ch">Drop your email and a line about the project. You get scope, timeline and a flat price within two working days.</p>
+  <form onSubmit="{{ onSubmit }}" style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
+    <input type="email" placeholder="Enter Your Email" style="font-family:Poppins,system-ui,sans-serif;font-size:14px;width:340px;max-width:100%;padding:13px 16px;border:1px solid #e5e7eb;border-radius:6px;background:#fff;color:#1a1a1a">
+    <button type="submit" style="cursor:pointer;border:0;font-family:Poppins,system-ui,sans-serif;background:#f97316;color:#fff;font-size:14px;font-weight:500;padding:13px 32px;border-radius:6px">{{ submitLabel }}</button>
+  </form>
+</section>
+
+<footer style="background:#f7f7f7;padding:44px 32px 30px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:24px">
+    <a href="#home" style="display:flex;align-items:center;gap:8px;color:#1a1a1a">
+      <span style="font-weight:800;font-size:22px;letter-spacing:-0.02em">STUDIO</span>
+      <span style="width:34px;height:34px;border-radius:50%;background:#fde8d7;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:#f97316">BR</span>
+    </a>
+    <nav style="display:flex;flex-wrap:wrap;justify-content:center;gap:26px;font-size:13px;font-weight:500">
+      <a href="#home" style="color:#1a1a1a" style-hover="color:#f97316">Home</a>
+      <a href="#about" style="color:#1a1a1a" style-hover="color:#f97316">About Me</a>
+      <a href="#services" style="color:#1a1a1a" style-hover="color:#f97316">Services</a>
+      <a href="#projects" style="color:#1a1a1a" style-hover="color:#f97316">Projects</a>
+      <a href="#contact" style="color:#1a1a1a" style-hover="color:#f97316">Contact</a>
+    </nav>
+    <div style="display:flex;gap:16px">
+      <a href="#" style="width:30px;height:30px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700" style-hover="background:#f97316;color:#fff">f</a>
+      <a href="#" style="width:30px;height:30px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700" style-hover="background:#f97316;color:#fff">t</a>
+      <a href="#" style="width:30px;height:30px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700" style-hover="background:#f97316;color:#fff">ig</a>
+      <a href="#" style="width:30px;height:30px;border-radius:50%;background:#1a1a1a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700" style-hover="background:#f97316;color:#fff">in</a>
+    </div>
+  </div>
+</footer>
+<div style="background:#4b4b4b;color:#fff;text-align:center;padding:12px 32px;font-size:12px">© 2026 <span style="color:#f97316;font-weight:600">Bon Axel Bryan Remoreas</span> All Rights Reserved , Inc.</div>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#fff"/><circle cx="100" cy="100" r="40" fill="#fde8d7"/><text x="100" y="112" font-family="Poppins,system-ui,sans-serif" font-weight="800" font-size="30" fill="#f97316" text-anchor="middle">BR</text></svg></template>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filter: "All", slide: 1, sent: false };
+
+  projects() {
+    return [
+      { cat: "Web Design", title: "Aircall Landing Page Design", slot: "project shot — 900×1120" },
+      { cat: "Web Design", title: "Business Landing Page Design", slot: "project shot — 900×1120" },
+      { cat: "Web Design", title: "Ecom Web Page Design", slot: "project shot — 900×1120" },
+      { cat: "UI/UX", title: "Vitals Onboarding Redesign", slot: "case study — 900×1120" },
+      { cat: "App Design", title: "Ronda Transit App", slot: "app screens — 900×1120" },
+      { cat: "Graphic Design", title: "Kalye Coffee Brand Kit", slot: "brand sheet — 900×1120" }
+    ];
+  }
+
+  quotes() {
+    return [
+      { text: "Bon rewrote our onboarding in two weeks and drop-off halved. He argued with us about structure early, which saved a month of build time.", name: "Marisa Uy", role: "Founder, Vitals" },
+      { text: "The Figma file was so well documented our developers stopped asking me questions. In eight years of shipping products that has never happened.", name: "Dan Okafor", role: "CTO, Lumen" },
+      { text: "He built the storefront himself instead of throwing a mockup over the fence. Launched on time and add-to-cart is up 38 percent.", name: "Jorge Nava", role: "Owner, Kalye Coffee" },
+      { text: "Clear scope, flat price, no drama. The second engagement was booked before the first one shipped.", name: "Ella Ramos", role: "Head of Product, Bantay" }
+    ];
+  }
+
+  renderVals() {
+    const all = this.projects();
+    const cats = ["All", "UI/UX", "Web Design", "App Design", "Graphic Design"];
+    const shown = this.state.filter === "All" ? all : all.filter(p => p.cat === this.state.filter);
+    const skills = [
+      { name: "UX", pct: 88 },
+      { name: "Website Design", pct: 84 },
+      { name: "App Design", pct: 94 },
+      { name: "Graphic Design", pct: 90 }
+    ];
+    return {
+      shownProjects: shown.slice(0, 6),
+      filters: cats.map(c => ({
+        name: c,
+        select: () => this.setState({ filter: c }),
+        bg: this.state.filter === c ? "#f97316" : "#fff",
+        fg: this.state.filter === c ? "#fff" : "#1a1a1a"
+      })),
+      skills: skills.map(s => ({ name: s.name, pct: s.pct + "%", knob: `calc(${s.pct}% - 9px)` })),
+      submitLabel: this.state.sent ? "Sent — talk soon" : "Contact Me",
+      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      services: [
+        { num: "01", title: "UI/UX", body: "Research, flows, wireframes and high-fidelity screens ready for build." },
+        { num: "02", title: "Web Design", body: "Marketing sites and landing pages with a section system your team can extend." },
+        { num: "03", title: "App Design", body: "Mobile-first interfaces with interaction specs and a clickable prototype." },
+        { num: "04", title: "Graphic Design", body: "Brand kits, social systems and print collateral that match the product." }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

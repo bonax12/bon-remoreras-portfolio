@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--ground:#e9f0f8;--header-bg:rgba(233,240,248,0.9);--ink:#16283f;--body:#5a6b80;--label:#5f7391;--rule:#c9d8ea;--rule-soft:#bccee3;--ph-a:#d5e2f2;--ph-b:#e3ecf7;--accent:#2f6db3;--btn-bg:#16283f;--btn-fg:#f7f9fc;--field:#1b3b6f;--on-field:#f7f9fc;--field-label:#b9cbe2;--field-rule:#6f8fbd;--field-accent:#9ec4ec;--field-body:#9fb0c4}
+html[data-theme="dark"]{--ground:#101a2a;--header-bg:rgba(16,26,42,0.9);--ink:#e7eef8;--body:#a8bad2;--label:#8ba1bd;--rule:#26374f;--rule-soft:#33486a;--ph-a:#1a2740;--ph-b:#152034;--accent:#79b0ec;--btn-bg:#e7eef8;--btn-fg:#101a2a;--field:#16263c;--on-field:#eaf1fa;--field-label:#9db4d0;--field-rule:#37507a;--field-accent:#8dc0f2;--field-body:#9db0c9}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:Poppins,system-ui,sans-serif;font-weight:400;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+a{color:var(--ink);text-decoration:none}
+a:hover{color:var(--accent)}
+input::placeholder,textarea::placeholder{color:var(--label)}
+:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
+@media (max-width:880px){.pm-2{grid-template-columns:1fr!important}.pm-4{grid-template-columns:1fr 1fr!important}.pm-3{grid-template-columns:1fr!important}.pm-h1{font-size:13vw!important}.pm-navlinks{display:none!important}.pm-row{grid-template-columns:1fr!important}}
+</style>
+</helmet>
+
+<div style="max-width:100%;overflow-x:hidden">
+
+<header style="position:sticky;top:0;z-index:50;background:var(--header-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)">
+  <div style="max-width:1080px;margin:0 auto;padding:20px 32px;display:flex;align-items:center;gap:32px">
+    <a href="#home" style="font-size:15px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase">Bon Axel Bryan Remoreas</a>
+    <div style="flex:1"></div>
+    <nav class="pm-navlinks" style="display:flex;align-items:center;gap:28px;font-size:13px;font-weight:400;color:var(--body)">
+      <a href="#about" style="color:var(--body)" style-hover="color:var(--ink)">About</a>
+      <a href="#services" style="color:var(--body)" style-hover="color:var(--ink)">Services</a>
+      <a href="#projects" style="color:var(--body)" style-hover="color:var(--ink)">Work</a>
+      <a href="#contact" style="color:var(--body)" style-hover="color:var(--ink)">Contact</a>
+    </nav>
+    <button onClick="{{ toggleTheme }}" aria-label="Toggle dark theme" style="cursor:pointer;background:none;border:0;padding:8px 0;font-family:Poppins,system-ui,sans-serif;font-size:13px;font-weight:400;color:var(--body);letter-spacing:0.04em" style-hover="color:var(--ink)">{{ themeLabel }}</button>
+    <a href="https://www.figma.com/design/pC7PWLeiJ2c6c2HPJKfG0R/Personal-Portfolio" target="_blank" rel="noopener" style="font-size:13px;font-weight:400;padding:8px 0;border-bottom:1px solid var(--ink)" style-hover="color:var(--accent);border-bottom:1px solid var(--accent)">Curriculum vitae</a>
+  </div>
+</header>
+
+<section id="home" style="max-width:1080px;margin:0 auto;padding:88px 32px 72px">
+  <div class="pm-2" style="display:grid;grid-template-columns:1.25fr 0.75fr;gap:64px;align-items:end">
+    <div>
+      <p style="margin:0 0 28px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent)">UI / UX designer — freelance</p>
+      <h1 class="pm-h1" style="margin:0 0 32px;font-size:76px;line-height:1.02;font-weight:700;letter-spacing:-0.045em;max-width:16ch">Quiet interfaces for products that have something to say.</h1>
+      <p style="margin:0 0 40px;font-size:17px;line-height:1.8;color:var(--body);max-width:46ch">Six years of research, flows and high-fidelity design for founders and small teams — then the Shopify or Wix Studio build, so nothing gets lost after handoff.</p>
+      <div style="display:flex;gap:28px;align-items:center;flex-wrap:wrap">
+        <a href="#contact" style="font-size:14px;font-weight:600;padding:15px 30px;background:var(--btn-bg);color:var(--btn-fg)" style-hover="background:var(--accent);color:var(--btn-fg)">Start a project</a>
+        <a href="#projects" style="font-size:14px;color:var(--body);border-bottom:1px solid var(--rule-soft);padding-bottom:2px" style-hover="color:var(--ink);border-bottom:1px solid var(--ink)">See selected work</a>
+      </div>
+    </div>
+    <div>
+      <p style="margin:0 0 18px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--label)">Builds on</p>
+      <div style="border-top:2px solid var(--rule)">
+        <sc-for list="{{ platforms }}" as="pl" hint-placeholder-count="5">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid var(--rule)">
+            <span style="font-size:16px;font-weight:600">{{ pl.name }}</span>
+            <span style="font:10px ui-monospace,Menlo,monospace;letter-spacing:0.1em;text-transform:uppercase;color:var(--label)">{{ pl.note }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:20px;margin-top:22px;font-size:12px;letter-spacing:0.04em;color:var(--body)">
+        <a href="https://www.figma.com/design/pC7PWLeiJ2c6c2HPJKfG0R/Personal-Portfolio" target="_blank" rel="noopener" style="color:var(--body)" style-hover="color:var(--accent)">Figma</a>
+        <a href="https://www.behance.net/bonaxeremorer" target="_blank" rel="noopener" style="color:var(--body)" style-hover="color:var(--accent)">Behance</a>
+        <a href="https://www.linkedin.com/in/bonaxelbryanremoreras/" target="_blank" rel="noopener" style="color:var(--body)" style-hover="color:var(--accent)">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="border-top:2px solid var(--rule)">
+  <div class="pm-row" style="max-width:1080px;margin:0 auto;padding:72px 32px;display:grid;grid-template-columns:200px 1fr">
+    <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--label)">About</p>
+    <div>
+      <p style="margin:0 0 22px;font-size:28px;line-height:1.45;font-weight:600;letter-spacing:-0.025em;max-width:38ch">I work end to end and document as I go — the whole portfolio lives in Figma, files open, so clients can follow the reasoning and not only the pixels.</p>
+      <p style="margin:0 0 48px;font-size:15px;line-height:1.9;color:var(--body);max-width:52ch">Most of it sits with early-stage products and e-commerce: dashboards that hide their complexity, and storefronts that still make sense a year after launch.</p>
+      <div class="pm-2" style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+        <div>
+          <p style="margin:0 0 20px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--label)">Capability</p>
+          <div style="display:grid;gap:0">
+            <sc-for list="{{ skills }}" as="s" hint-placeholder-count="5">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:11px 0;border-bottom:1px solid var(--rule)">
+                <span style="font-size:15px;font-weight:600">{{ s.name }}</span>
+                <span style="font:10px ui-monospace,Menlo,monospace;letter-spacing:0.1em;text-transform:uppercase;color:var(--label)">{{ s.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <p style="margin:0 0 20px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--label)">Tools</p>
+          <p style="margin:0 0 32px;font-size:15px;line-height:2;color:var(--body)">Figma · FigJam · Shopify · PageFly · Wix Studio · Framer · Notion · Illustrator</p>
+          <p style="margin:0 0 20px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--label)">Availability</p>
+          <p style="margin:0;font-size:15px;line-height:1.9;color:var(--body)">Two project slots open for Q4 2026. Replies with scope and a flat price within two working days.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" style="border-top:2px solid var(--rule)">
+  <div class="pm-row" style="max-width:1080px;margin:0 auto;padding:72px 32px;display:grid;grid-template-columns:200px 1fr">
+    <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--label)">Services</p>
+    <div>
+      <sc-for list="{{ services }}" as="sv" hint-placeholder-count="4">
+        <div class="pm-2" style="display:grid;grid-template-columns:1fr 1.4fr;gap:32px;padding:26px 0;border-bottom:1px solid var(--rule);align-items:baseline">
+          <div style="display:flex;gap:14px;align-items:baseline">
+            <span style="font:10px ui-monospace,Menlo,monospace;letter-spacing:0.1em;color:var(--accent)">{{ sv.num }}</span>
+            <h3 style="margin:0;font-size:25px;font-weight:700;letter-spacing:-0.025em">{{ sv.title }}</h3>
+          </div>
+          <div>
+            <p style="margin:0 0 8px;font-size:15px;line-height:1.85;color:var(--body)">{{ sv.body }}</p>
+            <p style="margin:0;font:10px ui-monospace,Menlo,monospace;letter-spacing:0.1em;text-transform:uppercase;color:var(--label)">{{ sv.meta }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="border-top:2px solid var(--rule)">
+  <div style="max-width:1080px;margin:0 auto;padding:72px 32px">
+    <div class="pm-row" style="display:grid;grid-template-columns:200px 1fr;align-items:baseline;margin-bottom:36px">
+      <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--label)">Selected work</p>
+      <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:baseline">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+          <button onClick="{{ f.select }}" style="cursor:pointer;background:none;border:0;padding:0 0 3px;font-family:Poppins,system-ui,sans-serif;font-size:13px;font-weight:400;color:{{ f.fg }};border-bottom:{{ f.rule }}">{{ f.name }}</button>
+        </sc-for>
+        <div style="flex:1"></div>
+        <span style="font:10px ui-monospace,Menlo,monospace;letter-spacing:0.1em;text-transform:uppercase;color:var(--label)">{{ countLabel }}</span>
+      </div>
+    </div>
+    <div class="pm-3" style="display:grid;grid-template-columns:repeat(2,1fr);gap:44px 40px">
+      <sc-for list="{{ shownProjects }}" as="p" hint-placeholder-count="4">
+        <a href="https://www.figma.com/design/pC7PWLeiJ2c6c2HPJKfG0R/Personal-Portfolio" target="_blank" rel="noopener" style="display:block" style-hover="opacity:0.78">
+          <div style="width:100%;aspect-ratio:4/3;background:repeating-linear-gradient(45deg,var(--ph-a) 0 10px,var(--ph-b) 10px 20px);display:flex;align-items:flex-end;padding:16px;margin-bottom:16px">
+            <span style="font:10px ui-monospace,Menlo,monospace;letter-spacing:0.08em;text-transform:uppercase;color:var(--label)">{{ p.slot }}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:16px;align-items:baseline">
+            <h3 style="margin:0;font-size:22px;font-weight:700;letter-spacing:-0.025em">{{ p.title }}</h3>
+            <span style="font:10px ui-monospace,Menlo,monospace;letter-spacing:0.1em;text-transform:uppercase;color:var(--label);white-space:nowrap">{{ p.meta }}</span>
+          </div>
+          <p style="margin:6px 0 0;font-size:14px;line-height:1.8;color:var(--body);max-width:44ch">{{ p.body }}</p>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="border-top:1px solid var(--rule);background:var(--field);color:var(--on-field)">
+  <div class="pm-row" style="max-width:1080px;margin:0 auto;padding:76px 32px;display:grid;grid-template-columns:200px 1fr">
+    <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--field-label)">Contact</p>
+    <div>
+      <h2 style="margin:0 0 22px;font-size:54px;line-height:1.06;font-weight:700;letter-spacing:-0.04em;max-width:18ch">Let's design something quiet and useful.</h2>
+      <p style="margin:0 0 40px;font-size:15px;line-height:1.9;color:var(--field-body);max-width:44ch">Tell me what you're building and where it's stuck. Scope, timeline and a flat price come back within two working days.</p>
+      <form onSubmit="{{ onSubmit }}" style="display:flex;gap:0;flex-wrap:wrap;max-width:520px;border-bottom:1px solid var(--field-rule);padding-bottom:10px;margin-bottom:36px">
+        <input type="email" placeholder="your email" style="flex:1;min-width:200px;font-family:Poppins,system-ui,sans-serif;font-size:15px;font-weight:300;background:transparent;border:0;color:var(--on-field);padding:6px 0">
+        <button type="submit" style="cursor:pointer;border:0;background:none;font-family:Poppins,system-ui,sans-serif;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--on-field);padding:6px 0" style-hover="color:var(--field-accent)">{{ submitLabel }}</button>
+      </form>
+      <div class="pm-2" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;font-size:14px;line-height:1.9">
+        <div>
+          <p style="margin:0 0 8px;font:10px ui-monospace,Menlo,monospace;letter-spacing:0.12em;text-transform:uppercase;color:var(--field-label)">Direct</p>
+          <a href="mailto:babsremoreras@gmail.com" style="color:var(--on-field);border-bottom:1px solid var(--field-rule)" style-hover="color:var(--field-accent);border-bottom:1px solid var(--field-accent)">babsremoreras@gmail.com</a>
+        </div>
+        <div>
+          <p style="margin:0 0 8px;font:10px ui-monospace,Menlo,monospace;letter-spacing:0.12em;text-transform:uppercase;color:var(--field-label)">Elsewhere</p>
+          <div style="display:flex;gap:18px;color:var(--field-body)">
+            <a href="https://www.figma.com/design/pC7PWLeiJ2c6c2HPJKfG0R/Personal-Portfolio" target="_blank" rel="noopener" style="color:var(--field-body)" style-hover="color:var(--on-field)">Figma</a>
+            <a href="https://www.behance.net/bonaxeremorer" target="_blank" rel="noopener" style="color:var(--field-body)" style-hover="color:var(--on-field)">Behance</a>
+            <a href="https://www.linkedin.com/in/bonaxelbryanremoreras/" target="_blank" rel="noopener" style="color:var(--field-body)" style-hover="color:var(--on-field)">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="max-width:1080px;margin:0 auto;padding:26px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--label)">
+  <span>© 2026 Bon Axel Bryan Remoreas</span>
+  <span>Designed in Figma · built in HTML</span>
+</footer>
+
+</div>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="var(--on-field)"/><rect x="60" y="96" width="80" height="1" fill="var(--ink)"/><text x="100" y="86" font-family="Poppins,system-ui,sans-serif" font-weight="400" font-size="26" fill="var(--ink)" text-anchor="middle">BR</text></svg></template>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filter: "All", slide: 0, sent: false, dark: false };
+
+  componentDidMount() {
+    let dark = false;
+    try { dark = localStorage.getItem("pm-theme") === "dark"; } catch (e) {}
+    this.setState({ dark });
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+  }
+
+  setTheme(dark) {
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    try { localStorage.setItem("pm-theme", dark ? "dark" : "light"); } catch (e) {}
+    this.setState({ dark });
+  }
+
+  projects() {
+    return [
+      { cat: "Web Design", title: "Aircall landing page", body: "Positioning, copy structure and a modular section system the team can reorder itself.", meta: "Figma · 2026", slot: "project shot — 1600×1200" },
+      { cat: "UI/UX", title: "Vitals onboarding redesign", body: "Twelve usability sessions, a friction map, and a re-sequenced signup that halved drop-off.", meta: "Research · 2025", slot: "project shot — 1600×1200" },
+      { cat: "Web Design", title: "Kalye coffee storefront", body: "Shopify build with PageFly sections — 38% lift in add-to-cart after the PDP rework.", meta: "Shopify · 2025", slot: "project shot — 1600×1200" },
+      { cat: "App Design", title: "Ronda transit app", body: "Route planning for jeepney commuters — offline-first flows and a one-thumb fare calculator.", meta: "Prototype · 2024", slot: "app screens — 1600×1200" },
+      { cat: "UI/UX", title: "Bantay component library", body: "Tokens, forty components and documented states, handed off with a parity checklist.", meta: "Figma library · 2026", slot: "system sheet — 1600×1200" },
+      { cat: "Graphic Design", title: "Kalye brand kit", body: "Wordmark, packaging labels and a social template set built on the storefront's type scale.", meta: "Brand · 2025", slot: "brand sheet — 1600×1200" }
+    ];
+  }
+
+  quotes() {
+    return [
+      { text: "He rewrote our onboarding in two weeks and drop-off halved. The arguing about structure happened early, which saved us a month.", name: "Marisa Uy", role: "Founder, Vitals" },
+      { text: "The Figma file was documented so well our developers stopped asking me questions. That has never happened before.", name: "Dan Okafor", role: "CTO, Lumen" },
+      { text: "He built the storefront himself instead of throwing a mockup over the fence. Launched on time, conversion up.", name: "Jorge Nava", role: "Owner, Kalye Coffee" },
+      { text: "Clear scope, flat price, no drama. The second engagement was booked before the first one shipped.", name: "Ella Ramos", role: "Head of Product, Bantay" }
+    ];
+  }
+
+  renderVals() {
+    const all = this.projects();
+    const cats = ["All", "UI/UX", "Web Design", "App Design", "Graphic Design"];
+    const shown = this.state.filter === "All" ? all : all.filter(p => p.cat === this.state.filter);
+    return {
+      shownProjects: shown,
+      countLabel: `${shown.length} / ${all.length}`,
+      filters: cats.map(c => ({
+        name: c,
+        select: () => this.setState({ filter: c }),
+        fg: this.state.filter === c ? "var(--ink)" : "var(--label)",
+        rule: this.state.filter === c ? "1px solid var(--accent)" : "1px solid transparent"
+      })),
+      platforms: [
+        { name: "Figma", note: "design + handoff" },
+        { name: "Shopify", note: "storefronts" },
+        { name: "Wix Studio", note: "sites" },
+        { name: "PageFly", note: "landing sections" },
+        { name: "Oxygen Builder", note: "wordpress" }
+      ],
+      skills: [
+        { name: "UX / wireframing", label: "Expert" },
+        { name: "UI design", label: "Expert" },
+        { name: "Prototyping in Figma", label: "Expert" },
+        { name: "Shopify + PageFly", label: "Advanced" },
+        { name: "Wix Studio", label: "Advanced" }
+      ],
+      services: [
+        { num: "01", title: "UI / UX design", body: "Research, flows, wireframes and high-fidelity screens ready for build.", meta: "From two weeks" },
+        { num: "02", title: "Web design", body: "Marketing sites and landing pages with a section system your team can extend.", meta: "From one week" },
+        { num: "03", title: "App design", body: "Mobile-first interfaces with interaction specs and a clickable prototype.", meta: "From three weeks" },
+        { num: "04", title: "No-code build", body: "Shopify, PageFly or Wix Studio implementation so the design ships as drawn.", meta: "From one week" }
+      ],
+      themeLabel: this.state.dark ? "Light" : "Dark",
+      toggleTheme: () => this.setTheme(!this.state.dark),
+      submitLabel: this.state.sent ? "Sent" : "Send",
+      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

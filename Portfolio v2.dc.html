@@ -187,6 +187,7 @@ class Component extends DCLogic {
     payload.access_key = "89f00fe7-f86d-4bcd-aa74-31a2e7f5bcc8";
     payload.subject = "New enquiry from your portfolio site";
     payload.from_name = "Portfolio contact form";
+    payload.replyto = payload.email || "";
     this.setState({ sending: true, error: false });
     fetch("https://api.web3forms.com/submit", {
       method: "POST",

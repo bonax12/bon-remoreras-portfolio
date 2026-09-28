@@ -1,28 +1,8 @@
 /* ---------------------------------------------------------------
    Theme tokens
 --------------------------------------------------------------- */
+/* Dark is the default (no data-theme attribute needed); light is the override. */
 :root {
-  --ground: #f1f6fc;
-  --header-bg: rgba(241, 246, 252, 0.9);
-  --ink: #16283f;
-  --body: #5a6b80;
-  --label: #5f7391;
-  --rule: #c9d8ea;
-  --rule-soft: #bccee3;
-  --ph-a: #d5e2f2;
-  --ph-b: #e3ecf7;
-  --accent: #2f6db3;
-  --btn-bg: #16283f;
-  --btn-fg: #f7f9fc;
-  --field: #1b3b6f;
-  --on-field: #f7f9fc;
-  --field-label: #b9cbe2;
-  --field-rule: #6f8fbd;
-  --field-accent: #9ec4ec;
-  --field-body: #9fb0c4;
-}
-
-html[data-theme="dark"] {
   --ground: #101a2a;
   --header-bg: rgba(16, 26, 42, 0.9);
   --ink: #e7eef8;
@@ -41,6 +21,27 @@ html[data-theme="dark"] {
   --field-rule: #37507a;
   --field-accent: #8dc0f2;
   --field-body: #9db0c9;
+}
+
+html[data-theme="light"] {
+  --ground: #f1f6fc;
+  --header-bg: rgba(241, 246, 252, 0.9);
+  --ink: #16283f;
+  --body: #5a6b80;
+  --label: #5f7391;
+  --rule: #c9d8ea;
+  --rule-soft: #bccee3;
+  --ph-a: #d5e2f2;
+  --ph-b: #e3ecf7;
+  --accent: #2f6db3;
+  --btn-bg: #16283f;
+  --btn-fg: #f7f9fc;
+  --field: #1b3b6f;
+  --on-field: #f7f9fc;
+  --field-label: #b9cbe2;
+  --field-rule: #6f8fbd;
+  --field-accent: #9ec4ec;
+  --field-body: #9fb0c4;
 }
 
 /* ---------------------------------------------------------------

@@ -282,9 +282,10 @@ function el(selector) {
 --------------------------------------------------------------- */
 
 function initTheme() {
-  let dark = false;
+  let dark = true; // default theme for first-time visitors
   try {
-    dark = localStorage.getItem("pm-theme") === "dark";
+    const stored = localStorage.getItem("pm-theme");
+    if (stored) dark = stored === "dark";
   } catch (e) {
     /* localStorage unavailable (private mode, etc.) */
   }

@@ -463,24 +463,21 @@ img {
   display: block;
 }
 
-/* The frame hugs the image, so wide screenshots leave no empty bands.
-   Tall images (posters, long emails) are capped at a 4:3 height and sit
-   centred on the frame colour instead of stretching the card. */
+/* The frame hugs the image at full width, so nothing is left empty around it
+   and nothing is cropped. Tall designs (posters, long emails) make a taller
+   card. */
 .media-frame {
   width: 100%;
   background: var(--ph-a);
   margin-bottom: 10px;
   position: relative;
   overflow: hidden;
-  container-type: inline-size;
 }
 
 .media-frame img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 75cqw;
-  object-fit: contain;
   transform: scale(1);
   transform-origin: 50% 50%;
   transition: transform 0.2s ease;

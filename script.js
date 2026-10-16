@@ -178,6 +178,14 @@ const PROJECTS = [
     ],
   },
   {
+    cat: "Claude code development",
+    title: "Tudlo Tracker",
+    body: "Private dashboard for an ESL tutor — students, weekly schedule, contracts, payments, class records and reports in one place. Built with Python Flask and SQLite, developed using Claude.",
+    meta: "Python Flask · 2026",
+    link: "https://tudlo-english.com/tudlo-tracker.html",
+    images: ["assets/projects/tudlo-tracker-dashboard.jpg"],
+  },
+  {
     cat: "Commission design",
     title: "African Swine Fever Awareness",
     body: "This ASF Poster is a commissioned poster design for a Veterinary student conducting a seminar about ASF awareness.",

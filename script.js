@@ -59,6 +59,7 @@ const SERVICES = [
   {
     num: "05",
     title: "App development",
+    formLabel: "App development (Python Flask)", // shown in the contact form's dropdown
     body: "Real, working web apps built with Python Flask and developed using Claude Code.",
     meta: "From two weeks",
   },
@@ -507,6 +508,16 @@ function initProjectZoom() {
 function initContactForm() {
   const form = el("#contact-form");
   const submitBtn = el("#form-submit");
+
+  // Service choices follow the SERVICES list above, so they never drift.
+  const serviceOptions = [
+    "Not sure yet",
+    ...SERVICES.map((s) => s.formLabel || s.title),
+    "Something else",
+  ];
+  el("#service-select").innerHTML = serviceOptions
+    .map((o) => `<option value="${escapeHtml(o)}">${escapeHtml(o)}</option>`)
+    .join("");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();

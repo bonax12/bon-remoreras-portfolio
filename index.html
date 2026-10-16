@@ -176,16 +176,51 @@
                 autocomplete="off"
                 class="botcheck"
               />
-              <input
-                type="email"
-                name="email"
-                placeholder="your email"
-                required
-                class="form-input"
-              />
-              <button type="submit" class="form-submit" id="form-submit">
-                Send
-              </button>
+              <label class="form-field">
+                <span class="meta-mono contact-label">Name</span>
+                <input
+                  type="text"
+                  name="name"
+                  autocomplete="name"
+                  required
+                  class="form-input"
+                />
+              </label>
+              <label class="form-field">
+                <span class="meta-mono contact-label">Email</span>
+                <input
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                  required
+                  class="form-input"
+                />
+              </label>
+              <label class="form-field form-field--wide">
+                <span class="meta-mono contact-label">What do you need?</span>
+                <select
+                  name="service"
+                  id="service-select"
+                  class="form-input"
+                ></select>
+              </label>
+              <label class="form-field form-field--wide">
+                <span class="meta-mono contact-label"
+                  >What are you building, and where is it stuck?</span
+                >
+                <textarea
+                  name="message"
+                  rows="4"
+                  required
+                  placeholder="A few lines is plenty: the product, who it's for, and when you need it."
+                  class="form-input"
+                ></textarea>
+              </label>
+              <div class="form-field--wide">
+                <button type="submit" class="form-submit" id="form-submit">
+                  Send
+                </button>
+              </div>
             </form>
 
             <div class="contact-details">

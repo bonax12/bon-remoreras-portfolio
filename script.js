@@ -361,6 +361,23 @@ function renderServices() {
 let activeFilter = "All";
 const carouselIndex = new Map();
 
+// Natural size of each project image, filled in by preloadImageSizes(). Cards
+// re-render on every filter/carousel click; with the size on the <img> the
+// browser reserves the frame's height before the file loads, so the grid
+// below doesn't jump.
+const imageSizes = new Map();
+
+function preloadImageSizes() {
+  PROJECTS.forEach((project) =>
+    project.images.forEach((src) => {
+      const probe = new Image();
+      probe.onload = () =>
+        imageSizes.set(src, [probe.naturalWidth, probe.naturalHeight]);
+      probe.src = src;
+    }),
+  );
+}
+
 function visibleProjects() {
   return activeFilter === "All"
     ? PROJECTS
@@ -413,12 +430,15 @@ function projectCardHTML(project) {
     ? ` href="${escapeHtml(link)}" target="_blank" rel="noopener"`
     : "";
 
+  const size = imageSizes.get(project.images[idx]);
+  const sizeAttrs = size ? ` width="${size[0]}" height="${size[1]}"` : "";
+
   return `
     <article class="project-card">
       <${tag} class="project-media"${linkAttrs}>
         <div class="media-frame">
           <img
-            src="${escapeHtml(project.images[idx])}"
+            src="${escapeHtml(project.images[idx])}"${sizeAttrs}
             alt="${escapeHtml(project.title)} screenshot"
           />
         </div>
@@ -538,6 +558,7 @@ function init() {
   renderServices();
   renderFilters();
   renderProjects();
+  preloadImageSizes();
   initProjectZoom();
   initContactForm();
 }

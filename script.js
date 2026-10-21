@@ -179,6 +179,14 @@ const PROJECTS = [
     ],
   },
   {
+    cat: "Web Design",
+    title: "Speedup Tournament Landing Page",
+    body: "Landing page for Speedup Tournament Manager — an online platform that runs doubles pickleball events end to end: rosters and payments, pool play, live standings and an auto-advancing bracket.",
+    meta: "Live site · 2026",
+    link: "https://speedup-tournamentmanager.github.io/landing-page/",
+    images: ["assets/projects/speedup-tournament-manager-landing.jpg"],
+  },
+  {
     cat: "Claude code development",
     title: "Tudlo Tracker",
     body: "Private dashboard for an ESL tutor — students, weekly schedule, contracts, payments, class records and reports in one place. Built with Python Flask and SQLite, developed using Claude.",
@@ -260,6 +268,14 @@ const PROJECTS = [
     meta: "Concept · 2026",
     // link: FIGMA_URL, // paste this project's link here
     images: ["assets/projects/jaksons-sports-park.jpg"],
+  },
+  {
+    cat: "Web Design",
+    title: "Tudlo Inquiry Reply Email",
+    body: "HTML email sent to people who contact Tudlo — a Zoom booking call to action, the four programs, a three-step “how it works” and Telegram, WhatsApp and KakaoTalk contact options.",
+    meta: "Email design · 2026",
+    // link: FIGMA_URL, // paste this project's link here
+    images: ["assets/projects/tudlo-inquiry-reply-email.jpg"],
   },
 ];
 

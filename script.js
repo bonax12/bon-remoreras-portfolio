@@ -1,8 +1,9 @@
 "use strict";
 
 /* ---------------------------------------------------------------
-   Content data — edit here to add/update platforms, skills,
-   services or projects. Nothing below this block needs to change
+   Content data — edit here to add/update platforms, services or
+   projects. Add `featured: true` to a project to show it in the
+   default "Featured" view. Nothing below this block needs to change
    for routine content updates.
 --------------------------------------------------------------- */
 
@@ -13,22 +14,13 @@ const WEB3FORMS_ACCESS_KEY = "89f00fe7-f86d-4bcd-aa74-31a2e7f5bcc8";
 
 const PLATFORMS = [
   { name: "Figma", note: "design + handoff" },
+  { name: "FigJam", note: "flows" },
   { name: "Shopify", note: "storefronts" },
   { name: "Wix Studio", note: "sites" },
   { name: "PageFly", note: "landing sections" },
   { name: "Oxygen Builder", note: "wordpress" },
   { name: "Python Flask", note: "app development" },
   { name: "Claude Code", note: "app development" },
-];
-
-const SKILLS = [
-  { name: "UX / wireframing", label: "Expert" },
-  { name: "UI design", label: "Expert" },
-  { name: "Prototyping in Figma", label: "Expert" },
-  { name: "Shopify + PageFly", label: "Advanced" },
-  { name: "Wix Studio", label: "Advanced" },
-  { name: "Python Flask", label: "Developing" },
-  { name: "App development with Claude Code", label: "Developing" },
 ];
 
 const SERVICES = [
@@ -84,6 +76,7 @@ const PROJECTS = [
   },
   {
     cat: "Shopify",
+    featured: true,
     title: "Tallo Naturals",
     body: "A website redesign project that modernized the Tallo Naturals shopping experience with improved visual hierarchy, cleaner layouts, and a more conversion-focused user journey.",
     meta: "E-commerce · 2026",
@@ -92,6 +85,7 @@ const PROJECTS = [
   },
   {
     cat: "Web application",
+    featured: true,
     title: "ROR Trader",
     body: "An all-in-one paper trading and strategy marketplace designed to help traders build confidence, improve decision-making, and learn without financial risk.",
     meta: "Concept · 2023",
@@ -124,6 +118,7 @@ const PROJECTS = [
   },
   {
     cat: "Shopify",
+    featured: true,
     title: "Beverly Hills",
     body: "Three conversion-focused product landing pages — Liquid Miracle, Men's Instant Facelift, and V-Lift — built with a consistent design system, custom sections, and optimized layouts to guide customers from problem to purchase.",
     meta: "E-commerce · 2026",
@@ -148,6 +143,7 @@ const PROJECTS = [
   },
   {
     cat: "Web Design",
+    featured: true,
     title: "Tudlo",
     body: "Landing page for an online English-tutoring platform — programs, flexible learning and trial booking.",
     meta: "Live site · 2026",
@@ -156,6 +152,7 @@ const PROJECTS = [
   },
   {
     cat: "Claude code development",
+    featured: true,
     title: "Speedup Booking System",
     body: "Court-booking web app for a real sports park, in active development — built with Python Flask and developed using Claude. Real-time availability, GCash/Maya/GrabPay checkout, no account required.",
     meta: "Python Flask · 2026",
@@ -188,6 +185,7 @@ const PROJECTS = [
   },
   {
     cat: "Claude code development",
+    featured: true,
     title: "Tudlo Tracker",
     body: "Private dashboard for an ESL tutor — students, weekly schedule, contracts, payments, class records and reports in one place. Built with Python Flask and SQLite, developed using Claude.",
     meta: "Python Flask · 2026",
@@ -280,6 +278,7 @@ const PROJECTS = [
 ];
 
 const FILTER_CATEGORIES = [
+  "Featured",
   "All",
   "Shopify",
   "Web Design",
@@ -303,35 +302,6 @@ function el(selector) {
 }
 
 /* ---------------------------------------------------------------
-   Theme
---------------------------------------------------------------- */
-
-function initTheme() {
-  let dark = true; // default theme for first-time visitors
-  try {
-    const stored = localStorage.getItem("pm-theme");
-    if (stored) dark = stored === "dark";
-  } catch (e) {
-    /* localStorage unavailable (private mode, etc.) */
-  }
-  applyTheme(dark);
-
-  el("#theme-toggle").addEventListener("click", () => {
-    applyTheme(document.documentElement.dataset.theme !== "dark");
-  });
-}
-
-function applyTheme(dark) {
-  document.documentElement.dataset.theme = dark ? "dark" : "light";
-  el("#theme-toggle").textContent = dark ? "Light" : "Dark";
-  try {
-    localStorage.setItem("pm-theme", dark ? "dark" : "light");
-  } catch (e) {
-    /* ignore */
-  }
-}
-
-/* ---------------------------------------------------------------
    Static content lists
 --------------------------------------------------------------- */
 
@@ -341,16 +311,6 @@ function renderPlatforms() {
       <div class="platform-row">
         <span class="platform-name">${escapeHtml(p.name)}</span>
         <span class="meta-mono">${escapeHtml(p.note)}</span>
-      </div>`,
-  ).join("");
-}
-
-function renderSkills() {
-  el("#skill-list").innerHTML = SKILLS.map(
-    (s) => `
-      <div class="skill-row">
-        <span class="skill-name">${escapeHtml(s.name)}</span>
-        <span class="meta-mono">${escapeHtml(s.label)}</span>
       </div>`,
   ).join("");
 }
@@ -375,7 +335,7 @@ function renderServices() {
    Projects: filtering + carousel
 --------------------------------------------------------------- */
 
-let activeFilter = "All";
+let activeFilter = "Featured";
 const carouselIndex = new Map();
 
 // Natural size of each project image, filled in by preloadImageSizes(). Cards
@@ -396,9 +356,15 @@ function preloadImageSizes() {
 }
 
 function visibleProjects() {
-  return activeFilter === "All"
-    ? PROJECTS
-    : PROJECTS.filter((p) => p.cat === activeFilter);
+  if (activeFilter === "All") return PROJECTS;
+  if (activeFilter === "Featured") return PROJECTS.filter((p) => p.featured);
+  return PROJECTS.filter((p) => p.cat === activeFilter);
+}
+
+function setFilter(cat) {
+  activeFilter = cat;
+  renderFilters();
+  renderProjects();
 }
 
 function renderFilters() {
@@ -414,11 +380,7 @@ function renderFilters() {
   el("#filter-list")
     .querySelectorAll(".filter-btn")
     .forEach((btn) => {
-      btn.addEventListener("click", () => {
-        activeFilter = btn.dataset.cat;
-        renderFilters();
-        renderProjects();
-      });
+      btn.addEventListener("click", () => setFilter(btn.dataset.cat));
     });
 }
 
@@ -482,6 +444,11 @@ function projectCardHTML(project) {
 function renderProjects() {
   const shown = visibleProjects();
   el("#projects-count").textContent = `${shown.length} / ${PROJECTS.length}`;
+
+  // Only the Featured view offers the way into the full archive.
+  const showAll = el("#show-all");
+  showAll.parentElement.hidden = activeFilter !== "Featured";
+  showAll.textContent = `See all ${PROJECTS.length} projects`;
 
   const grid = el("#projects-grid");
   grid.innerHTML = shown.map(projectCardHTML).join("");
@@ -579,13 +546,12 @@ function initContactForm() {
 --------------------------------------------------------------- */
 
 function init() {
-  initTheme();
   renderPlatforms();
-  renderSkills();
   renderServices();
   renderFilters();
   renderProjects();
   preloadImageSizes();
+  el("#show-all").addEventListener("click", () => setFilter("All"));
   initProjectZoom();
   initContactForm();
 }

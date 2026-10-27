@@ -21,24 +21,11 @@
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <div class="header-slot"></div>
-
         <nav class="nav-links" aria-label="Primary">
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
           <a href="#projects">Work</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
           <a href="#contact">Contact</a>
-        </nav>
-
-        <div class="header-actions">
-          <button
-            type="button"
-            id="theme-toggle"
-            class="theme-toggle"
-            aria-label="Toggle dark theme"
-          >
-            Dark
-          </button>
           <a
             class="cv-link"
             href="https://www.figma.com/design/pC7PWLeiJ2c6c2HPJKfG0R/Personal-Portfolio"
@@ -46,55 +33,68 @@
             rel="noopener"
             >Curriculum vitae</a
           >
-        </div>
+        </nav>
       </div>
     </header>
 
     <main>
       <section id="home" class="hero">
-        <div class="container hero-grid">
-          <div>
-            <p class="eyebrow hero-eyebrow">UI / UX designer — freelance</p>
-            <h1 class="hero-title">
-              Quiet interfaces for products that have something to say.
-            </h1>
-            <p class="hero-lede">
-              Six years of research, flows and high-fidelity design for founders
-              and small teams — then the Shopify or Wix Studio build, so nothing
-              gets lost after handoff.
-            </p>
-            <div class="hero-actions">
-              <a class="btn-primary" href="#contact">Start a project</a>
-              <a class="btn-link" href="#projects">See selected work</a>
-            </div>
+        <div class="container">
+          <h1 class="hero-title">
+            Design for startups and online stores, built to match.
+          </h1>
+          <p class="hero-lede">
+            I design in Figma, then build it on Shopify, Wix Studio or Python
+            Flask — so what ships is what was drawn.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#contact">Start a project</a>
+            <a class="btn-link" href="#projects">See selected work</a>
           </div>
 
-          <div class="hero-aside">
-            <p class="eyebrow">Builds on</p>
-            <div class="platform-list" id="platform-list"></div>
-            <div class="social-links">
-              <a
-                class="social-link social-link--accent"
-                href="https://www.figma.com/design/pC7PWLeiJ2c6c2HPJKfG0R/Personal-Portfolio"
-                target="_blank"
-                rel="noopener"
-                >Figma</a
-              >
-              <a
-                class="social-link"
-                href="https://www.behance.net/bonaxeremorer"
-                target="_blank"
-                rel="noopener"
-                >Behance</a
-              >
-              <a
-                class="social-link"
-                href="https://www.linkedin.com/in/bonaxelbryanremoreras/"
-                target="_blank"
-                rel="noopener"
-                >LinkedIn</a
-              >
+          <div class="hero-facts">
+            <div>
+              <p class="hero-fact-value">6 years</p>
+              <p class="meta-mono">With founders and small teams</p>
             </div>
+            <div>
+              <p class="hero-fact-value">Design to build</p>
+              <p class="meta-mono">Shopify · Wix Studio · Flask</p>
+            </div>
+            <div>
+              <p class="hero-fact-value">2 working days</p>
+              <p class="meta-mono">To scope, timeline and flat price</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <div class="projects-toolbar">
+            <p class="eyebrow">Selected work</p>
+            <div class="projects-toolbar-right">
+              <div class="filter-list" id="filter-list"></div>
+              <span class="meta-mono projects-count" id="projects-count"></span>
+            </div>
+          </div>
+          <div class="projects-grid" id="projects-grid"></div>
+          <p class="projects-more">
+            <button type="button" class="btn-link" id="show-all"></button>
+          </p>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <div class="container section-grid">
+          <p class="eyebrow">Services</p>
+          <div>
+            <div class="service-list" id="service-list"></div>
+            <p class="section-cta">
+              <a class="btn-link" href="#contact"
+                >Not sure which one you need? Tell me what you're building</a
+              >
+            </p>
           </div>
         </div>
       </section>
@@ -114,60 +114,64 @@
               make sense a year after launch.
             </p>
 
-            <div class="about-columns">
-              <div>
-                <p class="eyebrow">Capability</p>
-                <div class="skill-list" id="skill-list"></div>
-              </div>
-              <div>
-                <p class="eyebrow">Tools</p>
-                <p class="tools-text">
-                  Figma · FigJam · Shopify · PageFly · Wix Studio · Python Flask
-                  · Claude Code
-                </p>
-                <!-- <p class="eyebrow">Availability</p> -->
-                <!-- <p class="availability-text">
-                  Two project slots open for Q4 2026. Replies with scope and a
-                  flat price within two working days.
-                </p> -->
-              </div>
-            </div>
+            <p class="eyebrow">Works in</p>
+            <div class="platform-list" id="platform-list"></div>
+            <!-- <p class="eyebrow">Availability</p> -->
+            <!-- <p class="availability-text">
+              Two project slots open for Q4 2026. Replies with scope and a
+              flat price within two working days.
+            </p> -->
           </div>
-        </div>
-      </section>
-
-      <section id="services" class="section">
-        <div class="container section-grid">
-          <p class="eyebrow">Services</p>
-          <div class="service-list" id="service-list"></div>
-        </div>
-      </section>
-
-      <section id="projects" class="section">
-        <div class="container">
-          <div class="projects-toolbar">
-            <p class="eyebrow">Selected work</p>
-            <div class="projects-toolbar-right">
-              <div class="filter-list" id="filter-list"></div>
-              <span class="meta-mono projects-count" id="projects-count"></span>
-            </div>
-          </div>
-          <div class="projects-grid" id="projects-grid"></div>
         </div>
       </section>
 
       <section id="contact" class="section contact">
-        <div class="container section-grid">
-          <p class="eyebrow eyebrow--field">Contact</p>
-          <div>
-            <h2 class="contact-heading">
-              Let's design something quiet and useful.
-            </h2>
+        <div class="container contact-grid">
+          <div class="contact-intro">
+            <p class="eyebrow eyebrow--field">Contact</p>
+            <h2 class="contact-heading">Tell me what you're building.</h2>
             <p class="contact-lede">
-              Tell me what you're building and where it's stuck. Scope, timeline
-              and a flat price come back within two working days.
+              Scope, timeline and a flat price come back within two working
+              days.
             </p>
 
+            <div class="contact-details">
+              <div>
+                <p class="meta-mono contact-label">Direct</p>
+                <a class="contact-link" href="mailto:babsremoreras@gmail.com"
+                  >babsremoreras@gmail.com</a
+                >
+              </div>
+              <div>
+                <p class="meta-mono contact-label">Elsewhere</p>
+                <div class="social-row">
+                  <a
+                    class="social-row-link"
+                    href="https://www.figma.com/design/pC7PWLeiJ2c6c2HPJKfG0R/Personal-Portfolio"
+                    target="_blank"
+                    rel="noopener"
+                    >Figma</a
+                  >
+                  <a
+                    class="social-row-link"
+                    href="https://www.behance.net/bonaxeremorer"
+                    target="_blank"
+                    rel="noopener"
+                    >Behance</a
+                  >
+                  <a
+                    class="social-row-link"
+                    href="https://www.linkedin.com/in/bonaxelbryanremoreras/"
+                    target="_blank"
+                    rel="noopener"
+                    >LinkedIn</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
             <form id="contact-form" class="contact-form">
               <input
                 type="checkbox"
@@ -222,41 +226,6 @@
                 </button>
               </div>
             </form>
-
-            <div class="contact-details">
-              <div>
-                <p class="meta-mono contact-label">Direct</p>
-                <a class="contact-link" href="mailto:babsremoreras@gmail.com"
-                  >babsremoreras@gmail.com</a
-                >
-              </div>
-              <div>
-                <p class="meta-mono contact-label">Elsewhere</p>
-                <div class="social-row">
-                  <a
-                    class="social-row-link"
-                    href="https://www.figma.com/design/pC7PWLeiJ2c6c2HPJKfG0R/Personal-Portfolio"
-                    target="_blank"
-                    rel="noopener"
-                    >Figma</a
-                  >
-                  <a
-                    class="social-row-link"
-                    href="https://www.behance.net/bonaxeremorer"
-                    target="_blank"
-                    rel="noopener"
-                    >Behance</a
-                  >
-                  <a
-                    class="social-row-link"
-                    href="https://www.linkedin.com/in/bonaxelbryanremoreras/"
-                    target="_blank"
-                    rel="noopener"
-                    >LinkedIn</a
-                  >
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
